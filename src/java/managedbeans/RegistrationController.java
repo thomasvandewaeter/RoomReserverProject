@@ -5,8 +5,10 @@
  */
 package managedbeans;
 
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import sessionbeans.ReservationFacade;
 
 /**
  *
@@ -15,6 +17,9 @@ import javax.enterprise.context.RequestScoped;
 @Named(value = "RegistrationController")
 @RequestScoped
 public class RegistrationController {
+    
+    @EJB
+    ReservationFacade reservationFacade;
 
     /**
      * Creates a new instance of RegistrationController
