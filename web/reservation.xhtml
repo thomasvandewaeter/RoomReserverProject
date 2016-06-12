@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./template.xhtml">
+
+            <!--
+            <ui:define name="top">
+                top
+            </ui:define>
+
+            <ui:define name="left">
+                left
+            </ui:define>
+            -->
+            
+            <ui:define name="headertitle">
+                Reservation
+            </ui:define>
+
+            <ui:define name="content">                
+                <div class="demo-cards mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
+                    <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
+                        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                            <h:form>
+                                <h:selectOneMenu value="#{ReservationController}">
+                                    <f:selectItems value="#{ReservationController.roomTypes}" />
+                                </h:selectOneMenu>
+
+                                <br/>
+                                <h:commandButton action="welcome" value="cancel" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white"/>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>                
+            </ui:define>
+
+            <!--
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+            -->
+
+        </ui:composition>
+
+    </body>
+</html>
