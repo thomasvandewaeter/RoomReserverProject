@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Thomas/Documents/NetBeansProjects/RoomReserverProject/src/java/entities/User.java</file>
+            <file>file:/C:/Users/Thomas/Documents/NetBeansProjects/RoomReserverProject/web/welcome.xhtml</file>
+            <file>file:/C:/Users/Thomas/Documents/NetBeansProjects/RoomReserverProject/web/WEB-INF/glassfish-resources.xml</file>
+            <file>file:/C:/Users/Thomas/Documents/NetBeansProjects/RoomReserverProject/web/resources/css/styles.css</file>
+            <file>file:/C:/Users/Thomas/Documents/NetBeansProjects/RoomReserverProject/src/java/sessionbeans/RoomFacade.java</file>
+            <file>file:/C:/Users/Thomas/Documents/NetBeansProjects/RoomReserverProject/web/reservation.xhtml</file>
+            <file>file:/C:/Users/Thomas/Documents/NetBeansProjects/RoomReserverProject/web/template.xhtml</file>
+            <file>file:/C:/Users/Thomas/Documents/NetBeansProjects/RoomReserverProject/web/resources/css/cssLayout.css</file>
+            <file>file:/C:/Users/Thomas/Documents/NetBeansProjects/RoomReserverProject/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Thomas/Documents/NetBeansProjects/RoomReserverProject/web/resources/css/default.css</file>
+            <file>file:/C:/Users/Thomas/Documents/NetBeansProjects/RoomReserverProject/src/java/sessionbeans/AbstractFacade.java</file>
+            <file>file:/C:/Users/Thomas/Documents/NetBeansProjects/RoomReserverProject/src/java/enums/RoomType.java</file>
+            <file>file:/C:/Users/Thomas/Documents/NetBeansProjects/RoomReserverProject/src/java/managedbeans/ReservationController.java</file>
+            <file>file:/C:/Users/Thomas/Documents/NetBeansProjects/RoomReserverProject/src/java/sessionbeans/UserFacade.java</file>
+            <file>file:/C:/Users/Thomas/Documents/NetBeansProjects/RoomReserverProject/src/java/managedbeans/RegistrationController.java</file>
+            <file>file:/C:/Users/Thomas/Documents/NetBeansProjects/RoomReserverProject/web/index.xhtml</file>
+            <file>file:/C:/Users/Thomas/Documents/NetBeansProjects/RoomReserverProject/src/java/entities/Reservation.java</file>
+            <file>file:/C:/Users/Thomas/Documents/NetBeansProjects/RoomReserverProject/src/java/sessionbeans/ReservationFacade.java</file>
+            <file>file:/C:/Users/Thomas/Documents/NetBeansProjects/RoomReserverProject/src/java/entities/Room.java</file>
+            <file>file:/C:/Users/Thomas/Documents/NetBeansProjects/RoomReserverProject/src/java/managedbeans/OverviewController.java</file>
+            <file>file:/C:/Users/Thomas/Documents/NetBeansProjects/RoomReserverProject/src/java/entities/ReservationPK.java</file>
+        </group>
+    </open-files>
+</project-private>

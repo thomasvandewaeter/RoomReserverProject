@@ -6,6 +6,8 @@
 package sessionbeans;
 
 import entities.Room;
+import enums.RoomType;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +29,11 @@ public class RoomFacade extends AbstractFacade<Room> {
 
     public RoomFacade() {
         super(Room.class);
+    }
+    
+    public List<Room> getRoomsByType(RoomType type){        
+        List<Room> rooms = em.createNamedQuery("Room.findByRoomType").setParameter("roomType", type).getResultList();        
+        return rooms;
     }
     
 }
