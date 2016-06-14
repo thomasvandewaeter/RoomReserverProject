@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="headertitle">
+                Confirmation
+            </ui:define>
+
+            <ui:define name="content">
+                <div class="demo-cards mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
+                    <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
+                        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+
+                            <h4>Overview of your room reservation</h4>
+                            <!-- Icon List -->
+                            <style>
+                            .demo-list-icon {
+                              width: 530px;
+                            }
+                            </style>
+                            <ul class="demo-list-icon mdl-list">
+                                <li class="mdl-list__item">
+                                    <span class="mdl-list__item-primary-content">
+                                        <b>First name</b>
+                                    </span>
+                                    <span class="mdl-list__item-secondary-content">
+                                        #{ReservationController.firstname}
+                                    </span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span class="mdl-list__item-primary-content">
+                                        <b>Last name</b>
+                                    </span>
+                                    <span class="mdl-list__item-secondary-content">
+                                        #{ReservationController.lastname}
+                                    </span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span class="mdl-list__item-primary-content">
+                                        <b>E-mail</b>
+                                    </span>
+                                    <span class="mdl-list__item-secondary-content">
+                                        #{ReservationController.email}
+                                    </span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span class="mdl-list__item-primary-content">
+                                        <b>Reserved room</b>
+                                    </span>
+                                    <span class="mdl-list__item-secondary-content">
+                                        TODO Vesalius 10.02 <!-- TODO -->
+                                    </span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span class="mdl-list__item-primary-content">
+                                        <b>Timeslot</b>
+                                    </span>
+                                    <span class="mdl-list__item-secondary-content">
+                                        TODO 08/07/2016
+                                    </span>
+                                </li>
+                                <li class="mdl-list__item">
+                                    <span class="mdl-list__item-primary-content">
+                                        <b>Confirmed</b>
+                                    </span>
+                                    <span class="mdl-list__item-secondary-content">
+                                        Confirmation pending, please check your email
+                                    </span>
+                                </li>
+                            </ul>
+                            <h:form>
+                                <h:commandButton id='back-to-home' action="welcome" value="back to homepage" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white" style="float:right;"/>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

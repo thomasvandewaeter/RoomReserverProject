@@ -47,7 +47,9 @@
                                     
                                 </h:commandButton>
                                 
-                                <h:commandButton id='confirm-registration' action="welcome" value="complete reservation" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white" style="float:right;"/>
+                                <h:commandButton id='confirm-registration' action="confirmation" value="complete reservation" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white" style="float:right;">
+                                    <f:actionListener binding="#{ReservationController.sendReservationConfirmationEmail()}"/>
+                                </h:commandButton>
                                 
                             </h:form>
                         </div>

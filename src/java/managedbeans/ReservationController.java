@@ -19,6 +19,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import sessionbeans.ReservationFacade;
 import sessionbeans.RoomFacade;
+import sessionbeans.UserFacade;
 
 /**
  *
@@ -33,6 +34,8 @@ public class ReservationController implements Serializable {
     
     @EJB
     private RoomFacade roomFacade;
+    @EJB
+    private UserFacade userFacade;
     
     private Reservation reservation;
     private Room prefRoom;
@@ -53,7 +56,16 @@ public class ReservationController implements Serializable {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        User check = userFacade.checkEmail(email);
+        if(check == null){
+            this.email = email;
+            user.setEmail(email);
+            userFacade.create(user);
+        } else {
+            this.email = check.getEmail();
+            this.firstname = check.getFirstname();
+            this.lastname = check.getLastname();
+        }        
     }
 
     public String getLastname() {
@@ -61,7 +73,8 @@ public class ReservationController implements Serializable {
     }
 
     public void setLastname(String lastname) {
-        this.lastname = lastname;
+        user.setLastname(lastname);
+        this.lastname = lastname; 
     }
 
     public String getFirstname() {
@@ -70,7 +83,7 @@ public class ReservationController implements Serializable {
     }
 
     public void setFirstname(String firstname) {
-        System.out.println(firstname + " blablabla tetten");
+        user.setFirstname(firstname);
         this.firstname = firstname;
     }
     
@@ -189,6 +202,10 @@ public class ReservationController implements Serializable {
     
     public RoomType[] getRoomTypes(){
         return RoomType.values();
+    }
+    
+    public void sendReservationConfirmationEmail(){
+        System.out.println("*** mail sent to " + email + " ***");
     }
     
     
