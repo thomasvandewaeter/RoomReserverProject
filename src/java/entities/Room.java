@@ -5,12 +5,16 @@
  */
 package entities;
 
+import static entities.Room_.roomType;
+import enums.RoomType;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -60,10 +64,19 @@ public class Room implements Serializable {
     @NotNull
     @Column(name = "seats")
     private int seats;
+    
+    /*
     @Basic(optional = false)
     @NotNull
     @Column(name = "room_type")
-    private int roomType;
+    private int roomType; 
+    */
+    @Enumerated(EnumType.ORDINAL)
+    @NotNull
+    @Column(name = "room_type")
+    private RoomType roomType;
+    
+    
     @Column(name = "cushionedChairs")
     private Boolean cushionedChairs;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "room")
@@ -76,7 +89,7 @@ public class Room implements Serializable {
         this.id = id;
     }
 
-    public Room(Integer id, String name, String address, int seats, int roomType) {
+    public Room(Integer id, String name, String address, int seats, RoomType roomType) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -116,11 +129,12 @@ public class Room implements Serializable {
         this.seats = seats;
     }
 
-    public int getRoomType() {
+    public RoomType getRoomType() {
         return roomType;
     }
 
-    public void setRoomType(int roomType) {
+    public void setRoomType(RoomType roomType) {
+        //System.out.println(roomType);
         this.roomType = roomType;
     }
 

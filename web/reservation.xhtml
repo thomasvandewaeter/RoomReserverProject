@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./template.xhtml">
+
+            <!--
+            <ui:define name="top">
+                top
+            </ui:define>
+
+            <ui:define name="left">
+                left
+            </ui:define>
+            -->
+
+            <ui:define name="headertitle">
+                Reservation
+            </ui:define>
+
+            <ui:define name="content">                
+                <div class="demo-cards mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
+                    <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
+                        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                            
+                            <h1>#{ReservationController.test}</h1>
+                            <h1>#{ReservationController.type}</h1>
+                            
+                            <h4>Select the desired room and timeslot</h4>
+                            <h:form>
+                                <h:selectOneRadio value="#{ReservationController.prefRoom.roomType}" style="margin:auto;" >
+                                    <f:selectItems value="#{ReservationController.roomTypes}" />
+                                    <f:ajax listener="#{ReservationController.updateRoomList}" render="rooms-table"/>
+                                </h:selectOneRadio>
+                            
+                            
+                                <h:panelGroup id="rooms-table" layout="block">
+                                    <table id="rooms-table" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp mdl-textfield--full-width">
+                                        <thead>
+                                            <tr>
+                                                <th class="mdl-data-table__cell--non-numeric mdl-textfield--full-width">Room</th>
+                                                <th class="mdl-data-table__cell--non-numeric mdl-textfield--full-width">Type</th>
+                                                <th>Seats</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <ui:repeat value="#{ReservationController.roomList}" var="room">                             
+                                                <tr>
+                                                    <td class="mdl-data-table__cell--non-numeric">#{room.name}</td>
+                                                    <td class="mdl-data-table__cell--non-numeric">#{room.roomType}</td>
+                                                    <td>#{room.seats}</td>
+                                                </tr>
+                                            </ui:repeat>
+                                        </tbody>
+                                    </table>
+                                    </h:panelGroup>
+                                </h:form>
+                                
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="demo-cards mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
+                    <h:form>
+                        <h:commandButton id='cancel-reservation' action="#{ReservationController.cancelReservation}" value="cancel" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white"/>
+                    </h:form>
+                        
+                    <div class="mdl-layout-spacer"></div>
+
+                    <h:form>
+                        <h:commandButton id='confirm-reservation' action="registration" value="continue" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white"/>
+                    </h:form>
+                </div>
+
+            </ui:define>
+
+            <!--
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+            -->
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -6,7 +6,13 @@ build.xml.stylesheet.CRC32=651128d4@1.75.1.1
 nbproject/build-impl.xml.data.CRC32=7f938a3c
 nbproject/build-impl.xml.script.CRC32=8e814601
 nbproject/build-impl.xml.stylesheet.CRC32=99ea4b56@1.75.1.1
+<<<<<<< .merge_file_a09976
+nbproject/rest-build.xml.data.CRC32=82bb0a71
+nbproject/rest-build.xml.script.CRC32=199601aa
+nbproject/rest-build.xml.stylesheet.CRC32=0cfeebcc@1.30.1
+=======
 nbproject/rest-build.xml.data.CRC32=40518d31
 nbproject/rest-build.xml.script.CRC32=199601aa
 nbproject/rest-build.xml.stylesheet.CRC32=0cfeebcc@1.30.1
 nbproject/jaxws-build.xml.stylesheet.CRC32=6608c2cf
+>>>>>>> .merge_file_a10192
