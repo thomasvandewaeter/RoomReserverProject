@@ -37,7 +37,9 @@ public class ReservationController implements Serializable {
     private Reservation reservation;
     private Room prefRoom;
     private User user;
-
+    private String email = "";
+    private String lastname = "";
+    private String firstname = "";
 
     private Room selectedRoom;
     private List<Room> roomList;
@@ -46,6 +48,32 @@ public class ReservationController implements Serializable {
     private String test;
     private RoomType type;
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getFirstname() {
+        System.out.println("getFirstname");
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        System.out.println(firstname + " blablabla tetten");
+        this.firstname = firstname;
+    }
+    
     public RoomType getType() {
         return type;
     }
@@ -162,5 +190,6 @@ public class ReservationController implements Serializable {
     public RoomType[] getRoomTypes(){
         return RoomType.values();
     }
+    
     
 }
