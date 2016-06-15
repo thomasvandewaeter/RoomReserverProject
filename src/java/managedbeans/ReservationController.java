@@ -7,7 +7,6 @@ package managedbeans;
 
 import entities.Reservation;
 import entities.ReservationPK;
-import static entities.Reservation_.reservationPK;
 import entities.Room;
 import entities.User;
 import enums.RoomType;
@@ -140,7 +139,8 @@ public class ReservationController implements Serializable {
         System.out.println("Room selected: " + selectedRoom.getName());
         
         reservation.setRoom(selectedRoom);
-        reservation.setConfirmed(false);
+        reservation.setConfirmed(false);       
+        
         
         //add one day to start of reservation to get end
         Calendar c = Calendar.getInstance();

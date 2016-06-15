@@ -35,8 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id"),
     @NamedQuery(name = "User.findByLastname", query = "SELECT u FROM User u WHERE u.lastname = :lastname"),
     @NamedQuery(name = "User.findByFirstname", query = "SELECT u FROM User u WHERE u.firstname = :firstname"),
-    @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email"),
-    @NamedQuery(name = "User.findByReservationsId", query = "SELECT u FROM User u WHERE u.reservationsId = :reservationsId")})
+    @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")})
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -61,10 +60,6 @@ public class User implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "email")
     private String email;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "reservations_id")
-    private int reservationsId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Collection<Reservation> reservationCollection;
 
@@ -75,12 +70,11 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public User(Integer id, String lastname, String firstname, String email, int reservationsId) {
+    public User(Integer id, String lastname, String firstname, String email) {
         this.id = id;
         this.lastname = lastname;
         this.firstname = firstname;
         this.email = email;
-        this.reservationsId = reservationsId;
     }
 
     public Integer getId() {
@@ -114,14 +108,6 @@ public class User implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public int getReservationsId() {
-        return reservationsId;
-    }
-
-    public void setReservationsId(int reservationsId) {
-        this.reservationsId = reservationsId;
     }
 
     @XmlTransient

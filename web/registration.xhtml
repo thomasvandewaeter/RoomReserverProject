@@ -3,7 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 
     <body>
 
@@ -17,44 +19,43 @@
                 <div class="demo-cards mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
                     <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
                         <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                            
+
                             <h4>Please fill in your personal details</h4>
-                            
+
+                            <h:form>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" >
+                                    <h:inputText class="mdl-textfield__input" id="sample1" value="#{ReservationController.firstname}" required="true" immediate="false"/>
+                                    <label class="mdl-textfield__label" for="sample1">First name</label>
+                                </div><br/>
+
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <text class="mdl-textfield__input" type="text" value="#{ReservationController.user.firstname}"/>
-                                    <label class="mdl-textfield__label">First name</label>
+                                    <h:inputText class="mdl-textfield__input" id="sample2" value="#{ReservationController.lastname}" required="true" immediate="false"/>
+                                    <label class="mdl-textfield__label" for="sample2">Last name</label>
+                                    
                                 </div>
                                 
+                                <br/>
+
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                  <input class="mdl-textfield__input" type="text" id="sample3" value="#{ReservationController.user.lastname}"/>
-                                  <label class="mdl-textfield__label" for="sample3">Last name</label>
+                                    <h:inputText class="mdl-textfield__input" id="sample3" value="#{ReservationController.email}" required="true" immediate="false"/>
+                                    <label class="mdl-textfield__label" for="sample3">E-mail</label>
                                 </div>
                                 
                                 <br/>
                                 
-                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input class="mdl-textfield__input" type="text" id="sample3" value="#{ReservationController.user.email}"/>
-                                  <label class="mdl-textfield__label" for="sample3">E-mail</label>
-                                </div>
-                        
+                                <h:commandButton id='back-registration' action="reservation" immediate="true" value="back" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">
+                                    
+                                </h:commandButton>
+                                
+                                <h:commandButton id='confirm-registration' action="confirmation" value="complete reservation" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white" style="float:right;">
+                                    <f:actionListener binding="#{ReservationController.sendReservationConfirmationEmail()}"/>
+                                </h:commandButton>
+                                
+                            </h:form>
                         </div>
                     </div>
                 </div>
-                
-                <div class="demo-cards mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
-                    <h:form>
-                        <h:commandButton id='back-registration' action="reservation" value="back" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white"/>
-                    </h:form>
-                        
-                    <div class="mdl-layout-spacer"></div>
-
-                    <h:form>
-                        <h:commandButton id='confirm-registration' action="welcome" value="complete reservation" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white"/>
-                    </h:form>
-                </div>
             </ui:define>
-
         </ui:composition>
-
     </body>
 </html>

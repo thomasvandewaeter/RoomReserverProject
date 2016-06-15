@@ -5,7 +5,6 @@
  */
 package entities;
 
-import static entities.Room_.roomType;
 import enums.RoomType;
 import java.io.Serializable;
 import java.util.Collection;
