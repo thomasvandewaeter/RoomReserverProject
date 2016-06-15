@@ -8,6 +8,7 @@ package rest;
 import entities.Reservation;
 import entities.ReservationPK;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,6 +22,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.PathSegment;
+import sessionbeans.ReservationFacade;
 
 /**
  *
@@ -32,6 +34,9 @@ public class ReservationFacadeREST extends AbstractFacade<Reservation> {
 
     @PersistenceContext(unitName = "RoomReserverProjectPU")
     private EntityManager em;
+
+    @EJB
+    private ReservationFacade reservationFacade;
 
     private ReservationPK getPrimaryKey(PathSegment pathSegment) {
         /*
@@ -82,9 +87,19 @@ public class ReservationFacadeREST extends AbstractFacade<Reservation> {
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Reservation find(@PathParam("id") PathSegment id) {
-        entities.ReservationPK key = getPrimaryKey(id);
-        return super.find(key);
+    public void find(@PathParam("id") PathSegment id) {
+        String[] roomUser = id.getPath().split("-");
+        int roomId = Integer.parseInt(roomUser[0]);
+        int userId = Integer.parseInt(roomUser[1]);
+        
+        List<Reservation> reservations = em.createNamedQuery("Reservation.findByRoomId").setParameter("roomId", roomId).getResultList();
+
+        for (Reservation r : reservations) {
+            if (r.getReservationPK().getUserId() == userId) {
+                r.setConfirmed(true);
+                reservationFacade.edit(r);
+            }
+        }
     }
 
     @GET
@@ -112,5 +127,5 @@ public class ReservationFacadeREST extends AbstractFacade<Reservation> {
     protected EntityManager getEntityManager() {
         return em;
     }
-    
+
 }

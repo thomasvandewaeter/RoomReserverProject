@@ -13,10 +13,20 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Properties;
 import java.util.Random;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpSession;
+import sessionbeans.RemoveReservationTimer;
 import sessionbeans.ReservationFacade;
 import sessionbeans.RoomFacade;
 
@@ -34,6 +44,11 @@ public class ReservationController implements Serializable {
     @EJB
     private RoomFacade roomFacade;
     
+    //todo removeme
+   
+    @EJB
+    RemoveReservationTimer removeReservationTimer;
+       
     private Reservation reservation;
     private Room prefRoom;
     private User user;
@@ -119,6 +134,10 @@ public class ReservationController implements Serializable {
         selectedRoom = new Room(); //actual existing room
         user = new User();
         
+        //REMOVE ME todo ##############################################################
+        removeReservationTimer.startTimer(7,1);
+        sendConfirmationMail("wvanderschraelen@gmail.com", 7, 1);
+        
         //Populate list with all rooms
         roomList = roomFacade.findAll();
         
@@ -135,6 +154,42 @@ public class ReservationController implements Serializable {
         /******************************/
        
        return "reservation.xhtml";
+    }
+    
+    public static void sendConfirmationMail(String recipient, int roomId, int userId) { //REMOVE ME todo ##############################################################
+
+        final String username = "beanstestmail@gmail.com";
+        final String password = "beanstestmail3000";
+
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+
+        try {
+            
+            String confirmationLink = "http://localhost:8080/RoomReserverProject/rest/reservation/" + roomId + "-" + userId;
+
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("beanstestmail@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse(recipient));
+            message.setSubject("Room Reserver - Confirm your reservation");
+            message.setContent("<h1>Please confirm or cancel your reservation: </h1> \n <a href=\""+confirmationLink+"\">Confirm</a>", "text/html");
+
+            Transport.send(message);
+
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
     }
     
     public String cancelReservation(){
