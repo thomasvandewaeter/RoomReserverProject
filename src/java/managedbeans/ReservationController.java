@@ -197,7 +197,7 @@ public class ReservationController implements Serializable {
         
         reservationFacade.create(reservation);
         
-        removeReservationTimer.startTimer(7,1);
+        removeReservationTimer.startTimer(selectedRoom.getId(),reguser.getId());
         sendConfirmationMail(user.getEmail(), selectedRoom.getId(), reguser.getId());
         
         return "confirmation.xhtml";
