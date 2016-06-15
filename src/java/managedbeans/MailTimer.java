@@ -17,7 +17,7 @@ public class MailTimer {
     TimerService timerService;
 
     public MailTimer() {
-        long duration = 8000;
+        long duration = 20000;
         Timer timer
                 = timerService.createSingleActionTimer(duration, new TimerConfig());
     }
