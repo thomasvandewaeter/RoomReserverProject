@@ -24,13 +24,17 @@
 
                             <h:form>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" >
-                                    <h:inputText class="mdl-textfield__input" id="sample1" value="#{ReservationController.user.firstname}" required="true" immediate="false" requiredMessage="This is a required field" autocomplete="off"/>
+                                    <h:inputText class="mdl-textfield__input" id="sample1" value="#{ReservationController.user.firstname}" required="true" immediate="false" requiredMessage="This is a required field" autocomplete="off">
+                                        <f:ajax event="keyup"/>
+                                    </h:inputText>
                                     <label class="mdl-textfield__label" for="sample1">First name</label>
                                     <h:message id="m1" for="sample1" style="color:red"/>
                                 </div><br/>
 
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <h:inputText class="mdl-textfield__input" id="sample2" value="#{ReservationController.user.lastname}" required="true" immediate="false" requiredMessage="This is a required field" autocomplete="off"/>
+                                    <h:inputText class="mdl-textfield__input" id="sample2" value="#{ReservationController.user.lastname}" required="true" immediate="false" requiredMessage="This is a required field" autocomplete="off">
+                                        <f:ajax event="keyup"/>
+                                    </h:inputText>
                                     <label class="mdl-textfield__label" for="sample2">Last name</label>
                                     <h:message id="m2" for="sample2" style="color:red"/>
                                 </div><br/>
@@ -38,18 +42,16 @@
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                     <h:inputText class="mdl-textfield__input" id="sample3" value="#{ReservationController.user.email}" required="true" immediate="false" requiredMessage="This is a required field" validatorMessage="Invalid email format" autocomplete="off">
                                         <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                        <f:ajax event="keyup"/>
                                     </h:inputText>
                                     <label class="mdl-textfield__label" for="sample3">E-mail</label>
                                     <h:message id="m3" for="sample3" style="color:red"/>
                                 </div><br/>
                                 
-                                <h:commandButton id='back-registration' action="reservation" immediate="true" value="back" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">
-                                    
-                                </h:commandButton>
+                                <h:commandButton id='back-registration' action="reservation" immediate="true" value="back" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white"/>
+                                  
                                 
-                                <h:commandButton id='confirm-registration' action="confirmation" value="complete reservation" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white" style="float:right;">
-                                    <f:actionListener binding="#{ReservationController.sendReservationConfirmationEmail()}"/>
-                                </h:commandButton>
+                                <h:commandButton id='confirm-registration' action="#{ReservationController.completeReservation}" value="complete reservation" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white" style="float:right;"/>
                                 
                             </h:form>
                         </div>

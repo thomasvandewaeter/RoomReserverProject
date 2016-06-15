@@ -19,7 +19,6 @@ import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
-import javax.faces.event.AjaxBehaviorEvent;
 import javax.servlet.http.HttpSession;
 import org.primefaces.event.SelectEvent;
 import sessionbeans.ReservationFacade;
