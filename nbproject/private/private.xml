@@ -4,13 +4,16 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Matteus/Documents/NetBeansProjects/RoomReserverProject/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/Matteus/Documents/NetBeansProjects/RoomReserverProject/web/index.xhtml</file>
             <file>file:/C:/Users/Matteus/Documents/NetBeansProjects/RoomReserverProject/src/java/managedbeans/ReservationController.java</file>
             <file>file:/C:/Users/Matteus/Documents/NetBeansProjects/RoomReserverProject/web/WEB-INF/glassfish-resources.xml</file>
-            <file>file:/C:/Users/Matteus/Documents/NetBeansProjects/RoomReserverProject/src/java/entities/User.java</file>
+            <file>file:/C:/Users/Matteus/Documents/NetBeansProjects/RoomReserverProject/src/java/filter/SessionTimeoutFilter.java</file>
+            <file>file:/C:/Users/Matteus/Documents/NetBeansProjects/RoomReserverProject/src/java/sessionbeans/ReservationFacade.java</file>
+            <file>file:/C:/Users/Matteus/Documents/NetBeansProjects/RoomReserverProject/web/welcome.xhtml</file>
+            <file>file:/C:/Users/Matteus/Documents/NetBeansProjects/RoomReserverProject/nbproject/build-impl.xml~</file>
+            <file>file:/C:/Users/Matteus/Documents/NetBeansProjects/RoomReserverProject/src/java/servlets/ListReservations.java</file>
             <file>file:/C:/Users/Matteus/Documents/NetBeansProjects/RoomReserverProject/web/template.xhtml</file>
-            <file>file:/C:/Users/Matteus/Documents/NetBeansProjects/RoomReserverProject/web/registration.xhtml</file>
             <file>file:/C:/Users/Matteus/Documents/NetBeansProjects/RoomReserverProject/src/java/managedbeans/RegistrationController.java</file>
+            <file>file:/C:/Users/Matteus/Documents/NetBeansProjects/RoomReserverProject/web/registration.xhtml</file>
         </group>
     </open-files>
 </project-private>

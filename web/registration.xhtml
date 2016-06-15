@@ -24,24 +24,22 @@
 
                             <h:form>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" >
-                                    <h:inputText class="mdl-textfield__input" id="sample1" value="#{ReservationController.firstname}" required="true" immediate="false"/>
+                                    <h:inputText class="mdl-textfield__input" id="sample1" value="#{ReservationController.user.firstname}" required="true" immediate="false" requiredMessage="This is a required field"/>
                                     <label class="mdl-textfield__label" for="sample1">First name</label>
+                                    <h:message id="m1" for="sample1" style="color:red"/>
                                 </div><br/>
 
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <h:inputText class="mdl-textfield__input" id="sample2" value="#{ReservationController.lastname}" required="true" immediate="false"/>
+                                    <h:inputText class="mdl-textfield__input" id="sample2" value="#{ReservationController.user.lastname}" required="true" immediate="false" requiredMessage="This is a required field"/>
                                     <label class="mdl-textfield__label" for="sample2">Last name</label>
-                                    
-                                </div>
-                                
-                                <br/>
+                                    <h:message id="m2" for="sample2" style="color:red"/>
+                                </div><br/>
 
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <h:inputText class="mdl-textfield__input" id="sample3" value="#{ReservationController.email}" required="true" immediate="false"/>
+                                    <h:inputText class="mdl-textfield__input" id="sample3" value="#{ReservationController.user.email}" required="true" immediate="false" requiredMessage="This is a required field"/>
                                     <label class="mdl-textfield__label" for="sample3">E-mail</label>
-                                </div>
-                                
-                                <br/>
+                                    <h:message id="m3" for="sample3" style="color:red"/>
+                                </div><br/>
                                 
                                 <h:commandButton id='back-registration' action="reservation" immediate="true" value="back" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">
                                     
