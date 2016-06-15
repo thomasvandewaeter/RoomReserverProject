@@ -6,6 +6,7 @@
 package servlets;
 
 import entities.Reservation;
+import entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Iterator;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import sessionbeans.ReservationFacade;
+import sessionbeans.UserFacade;
 
 /**
  *
@@ -25,6 +27,7 @@ import sessionbeans.ReservationFacade;
 public class ListReservations extends HttpServlet {
 
     ReservationFacade reservationFacade;
+    UserFacade userFacade;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -50,14 +53,33 @@ public class ListReservations extends HttpServlet {
                 System.out.println(e.toString());
             }
             
+            try {
+                List<User> list = userFacade.getAllUsers();
+                if(list != null && !list.isEmpty()){
+                    Iterator<User> it = list.iterator();
+                    while(it.hasNext()){
+                        System.out.println(it.next().getEmail());
+                    }
+                } else {
+                    System.out.println("*** No users found ***");
+                }
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+            
+            
+            
             out.println("<!DOCTYPE html>"
                     + "<html>"
                     + "<head>"
                     + "<title>Servlet ListReservations</title>"
                     + "</head>"
                     + "<body>"
-                    + "<h1>Servlet ListReservations at " + request.getContextPath() + "</h1>"
-                    + "</body>"
+                    + "<h1>Servlet ListReservations at " + request.getContextPath() + "</h1>");
+            for(int i = 0; i<5; i++){
+                out.println("<div><b>" + i + "</b></div>");
+            }
+            out.println("</body>"
                     + "</html>");
         }
     }
