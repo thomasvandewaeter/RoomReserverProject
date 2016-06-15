@@ -6,6 +6,10 @@
 package sessionbeans;
 
 import entities.Reservation;
+<<<<<<< .merge_file_a05636
+=======
+import java.util.Date;
+>>>>>>> .merge_file_a00616
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -30,9 +34,21 @@ public class ReservationFacade extends AbstractFacade<Reservation> {
         super(Reservation.class);
     }
     
+<<<<<<< .merge_file_a05636
     public List<Reservation> getAllReservations(){
         List<Reservation> list = em.createNamedQuery("Reservation.findAll").getResultList();
         return list;
     }
     
+=======
+    public List<Reservation> getReservationsByRoomId(int id){
+        List<Reservation> reservations = em.createNamedQuery("Reservation.findByRoomId").setParameter("roomId", id).getResultList();        
+        return reservations;
+    }
+    
+    public List<Reservation> getReservationsByStartTime(Date starttime){
+        List<Reservation> reservations = em.createNamedQuery("Reservation.findByStartTime").setParameter("startTime", starttime).getResultList();
+        return reservations;
+    }    
+>>>>>>> .merge_file_a00616
 }

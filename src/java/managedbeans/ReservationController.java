@@ -6,17 +6,21 @@
 package managedbeans;
 
 import entities.Reservation;
+import entities.ReservationPK;
 import entities.Room;
 import entities.User;
 import enums.RoomType;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-import java.util.Random;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import org.primefaces.event.SelectEvent;
 import sessionbeans.ReservationFacade;
 import sessionbeans.RoomFacade;
 import sessionbeans.UserFacade;
@@ -34,68 +38,136 @@ public class ReservationController implements Serializable {
     
     @EJB
     private RoomFacade roomFacade;
+    
     @EJB
     private UserFacade userFacade;
     
     private Reservation reservation;
-    private Room prefRoom;
+    private Room prefRoom; //dummy room object to store preferences
     private User user;
 
-    private Room selectedRoom;
-    private List<Room> roomList;
+    private Room selectedRoom; //actual room
+    private List<Room> roomList; //list of all rooms
+    private List<Room> filteredRoomList; //filtered list based on requirements
     
-    /*******************************/
-    private String test;
-    private RoomType type;
-
-    public String getEmail() {
-        return user.getEmail();
-    }
-
-    public void setEmail(String email) {
-        user.setEmail(email);
-        userFacade.create(user);
-        /*
-        User check = userFacade.checkEmail(email);
-        if(check == null){
-            userFacade.create(user);
-        }         
-        */
-    }
-
-    public String getLastname() {
-        return user.getLastname();
-    }
-
-    public void setLastname(String lastname) {
-        user.setLastname(lastname);
-    }
-
-    public String getFirstname() {
-        System.out.println("getFirstname");
-        return user.getFirstname();
-    }
-
-    public void setFirstname(String firstname) {
-        user.setFirstname(firstname);
+    
+    /**
+     * Creates a new instance of ReservationController
+     */
+    public ReservationController() {
     }
     
-    public RoomType getType() {
-        return type;
+    public String startNewReservation(){
+        
+        System.out.println("Starting new reservation...");
+        
+        reservation = new Reservation(); //new reservation
+        prefRoom = new Room(); //preferred room settings
+        
+        selectedRoom = null; //actual existing room
+        user = new User();
+        
+        //Populate list with all rooms (no filter)
+        roomList = roomFacade.findAll();
+        filteredRoomList = roomList;
+        filteredRoomList = null;
+       
+       return "reservation.xhtml";
+    }
+    
+    public String cancelReservation(){
+        
+        //Invalidate user session
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);
+        session.invalidate();
+        
+        System.out.println("Cancelling Reservation...");
+        
+        return "welcome.xhtml";
+    }
+    
+    //Updates available room list for new preferences/availability
+    public void updateFilteredRoomList(){
+        
+        //Reset filters
+        filteredRoomList = new ArrayList<>(roomList);
+        
+        if(prefRoom.getRoomType() != null && reservation.getStartTime() == null){
+            //Get rooms for selected type
+            filteredRoomList = roomFacade.getRoomsByType(prefRoom.getRoomType());
+            filteredRoomList = null;
+        } else if(reservation.getStartTime() != null){
+            
+            //get all reservations for selected date
+            List<Reservation> res = reservationFacade.getReservationsByStartTime(reservation.getStartTime());
+            
+            //Remove all rooms from list that have reservations for selected date
+            res.stream().forEach((c) -> {
+                System.out.println(c.getStartTime());
+                filteredRoomList.removeIf(p -> p.getId() == c.getRoom().getId());
+            });
+            
+            //Apply roomtype filter if not null
+            if(prefRoom.getRoomType() != null){
+                filteredRoomList.removeIf(p -> p.getRoomType() != prefRoom.getRoomType());                
+            }       
+        }
+        
+        //System.out.println("Amount of rooms for selection: " + filteredRoomList.size());
+    }
+    
+    //Update list for new selected type
+    public void roomtypeChange(){
+        System.out.println("Radio set to: " + prefRoom.getRoomType());
+        
+        updateFilteredRoomList();
+    }
+    
+    //Update date for reservation
+    public void dateChange(SelectEvent e){
+        Date date = (Date) e.getObject();
+        reservation.setStartTime(date);
+        System.out.println("Reservation date: " + reservation.getStartTime());
+        
+        updateFilteredRoomList();
+    }
+    
+    //Complete reservation fields when row is selected
+    public void onRowSelect(SelectEvent e){
+        selectedRoom = (Room) e.getObject();
+        System.out.println("Room selected: " + selectedRoom.getName());
+        
+        reservation.setRoom(selectedRoom);
+        reservation.setConfirmed(false);       
+        
+        
+        //add one day to start of reservation to get end
+        Calendar c = Calendar.getInstance();
+        c.setTime(reservation.getStartTime());
+        c.add(Calendar.DATE, 1);
+        
+        reservation.setEndTime(c.getTime());
+        
+        // !!!!!!!!!!
+        ReservationPK rpk = new ReservationPK(user.getId(), selectedRoom.getId());
+        reservation.setReservationPK(rpk);
+        
+        //Persist entity
+        reservationFacade.create(reservation);
+    }
+    
+    public RoomType[] getRoomTypes(){
+        return RoomType.values();
+    }
+    
+    public List<Room> getFilteredRoomList() {
+        return filteredRoomList;
     }
 
-    public void setType(RoomType type) {
-        this.type = type;
+    public void setFilteredRoomList(List<Room> filteredRoomList) {
+        this.filteredRoomList = filteredRoomList;
     }
-
-    public String getTest() {
-        return test;
-    }
-
-    public void setTest(String test) {
-        this.test = test;
-    }
-    /*********************************/
 
     public List<Room> getRoomList() {
         return roomList;
@@ -136,70 +208,4 @@ public class ReservationController implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
-    
-    /**
-     * Creates a new instance of ReservationController
-     */
-    public ReservationController() {
-    }
-    
-    public String startNewReservation(){
-        
-        System.out.println("Starting new reservation...");
-        
-        reservation = new Reservation();
-        prefRoom = new Room(); //preferred room settings
-        
-        selectedRoom = new Room(); //actual existing room
-        user = new User();
-        
-        //Populate list with all rooms
-        roomList = roomFacade.findAll();
-        
-        /*
-        user.setFirstname("Thomas");
-        user.setLastname("Vandewaeter");
-        user.setEmail("thomasvandewaeter@hotmail.com");
-        */
-        
-        /*****************************/
-        Random random = new Random();
-        int i = random.nextInt();        
-        test = Integer.toString(i);
-        /******************************/
-       
-       return "reservation.xhtml";
-    }
-    
-    public String cancelReservation(){
-        
-        //Invalidate user session
-        FacesContext context = FacesContext.getCurrentInstance();
-        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);
-        session.invalidate();
-        
-        System.out.println("Cancelling Reservation...");
-        
-        return "welcome.xhtml";
-    }
-    
-    public void updateRoomList(){
-        System.out.println("Radio set to: " + prefRoom.getRoomType());
-        roomList = roomFacade.getRoomsByType(prefRoom.getRoomType());
-        System.out.println("Amount of rooms for selection: " + roomList.size());
-    }
-    
-    public void testcheck(){
-        System.out.println("testcheck");
-    }
-    
-    public RoomType[] getRoomTypes(){
-        return RoomType.values();
-    }
-    
-    public void sendReservationConfirmationEmail(){
-        System.out.println("*** mail sent to " + user.getEmail() + " ***");
-    }
-    
-    
 }
