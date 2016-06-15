@@ -24,19 +24,21 @@
 
                             <h:form>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" >
-                                    <h:inputText class="mdl-textfield__input" id="sample1" value="#{ReservationController.user.firstname}" required="true" immediate="false" requiredMessage="This is a required field"/>
+                                    <h:inputText class="mdl-textfield__input" id="sample1" value="#{ReservationController.user.firstname}" required="true" immediate="false" requiredMessage="This is a required field" autocomplete="off"/>
                                     <label class="mdl-textfield__label" for="sample1">First name</label>
                                     <h:message id="m1" for="sample1" style="color:red"/>
                                 </div><br/>
 
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <h:inputText class="mdl-textfield__input" id="sample2" value="#{ReservationController.user.lastname}" required="true" immediate="false" requiredMessage="This is a required field"/>
+                                    <h:inputText class="mdl-textfield__input" id="sample2" value="#{ReservationController.user.lastname}" required="true" immediate="false" requiredMessage="This is a required field" autocomplete="off"/>
                                     <label class="mdl-textfield__label" for="sample2">Last name</label>
                                     <h:message id="m2" for="sample2" style="color:red"/>
                                 </div><br/>
 
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <h:inputText class="mdl-textfield__input" id="sample3" value="#{ReservationController.user.email}" required="true" immediate="false" requiredMessage="This is a required field"/>
+                                    <h:inputText class="mdl-textfield__input" id="sample3" value="#{ReservationController.user.email}" required="true" immediate="false" requiredMessage="This is a required field" validatorMessage="Invalid email format" autocomplete="off">
+                                        <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                    </h:inputText>
                                     <label class="mdl-textfield__label" for="sample3">E-mail</label>
                                     <h:message id="m3" for="sample3" style="color:red"/>
                                 </div><br/>
