@@ -10,6 +10,7 @@ import entities.ReservationPK;
 import entities.Room;
 import entities.User;
 import enums.RoomType;
+import interceptor.ReserverInterceptor;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.Properties;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
+import javax.interceptor.Interceptors;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -68,9 +70,8 @@ public class ReservationController implements Serializable {
     public ReservationController() {
     }
     
+    @Interceptors(ReserverInterceptor.class)
     public String startNewReservation(){
-        
-        System.out.println("Starting new reservation...");
         
         reservation = new Reservation(); //new reservation
         prefRoom = new Room(); //preferred room settings
