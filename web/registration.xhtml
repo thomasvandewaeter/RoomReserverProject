@@ -20,11 +20,9 @@
                             
                             <h4>Please fill in your personal details</h4>
                             
-                            <h:form>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                     <text class="mdl-textfield__input" type="text" value="#{ReservationController.user.firstname}"/>
                                     <label class="mdl-textfield__label">First name</label>
-                                    <f:ajax listener="#{ReservationController.testcheck}" />
                                 </div>
                                 
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -38,9 +36,6 @@
                                     <input class="mdl-textfield__input" type="text" id="sample3" value="#{ReservationController.user.email}"/>
                                   <label class="mdl-textfield__label" for="sample3">E-mail</label>
                                 </div>
-                                
-                                
-                            </h:form>
                         
                         </div>
                     </div>

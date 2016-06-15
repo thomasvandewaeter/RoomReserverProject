@@ -6,6 +6,8 @@
 package sessionbeans;
 
 import entities.Reservation;
+import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -29,4 +31,13 @@ public class ReservationFacade extends AbstractFacade<Reservation> {
         super(Reservation.class);
     }
     
+    public List<Reservation> getReservationsByRoomId(int id){
+        List<Reservation> reservations = em.createNamedQuery("Reservation.findByRoomId").setParameter("roomId", id).getResultList();        
+        return reservations;
+    }
+    
+    public List<Reservation> getReservationsByStartTime(Date starttime){
+        List<Reservation> reservations = em.createNamedQuery("Reservation.findByStartTime").setParameter("startTime", starttime).getResultList();
+        return reservations;
+    }    
 }
