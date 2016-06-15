@@ -25,7 +25,7 @@ public class OverviewController {
     @EJB
     private RoomFacade roomFacade;
     private List<Room> roomList = new ArrayList<>();
-
+    
     /**
      * Creates a new instance of OverviewController
      */
