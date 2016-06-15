@@ -99,6 +99,7 @@ public class User implements Serializable {
     }
 
     public void setFirstname(String firstname) {
+        System.out.println("setfirstname entity: " + firstname);
         this.firstname = firstname;
     }
 

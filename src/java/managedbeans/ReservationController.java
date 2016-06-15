@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.servlet.http.HttpSession;
 import org.primefaces.event.SelectEvent;
 import sessionbeans.ReservationFacade;
@@ -49,7 +50,6 @@ public class ReservationController implements Serializable {
     private Room selectedRoom; //actual room
     private List<Room> roomList; //list of all rooms
     private List<Room> filteredRoomList; //filtered list based on requirements
-    
     
     /**
      * Creates a new instance of ReservationController
@@ -150,11 +150,43 @@ public class ReservationController implements Serializable {
         reservation.setEndTime(c.getTime());
         
         // !!!!!!!!!!
-        ReservationPK rpk = new ReservationPK(user.getId(), selectedRoom.getId());
-        reservation.setReservationPK(rpk);
+        //ReservationPK rpk = new ReservationPK(user.getId(), selectedRoom.getId());
+        //reservation.setReservationPK(rpk);
         
         //Persist entity
+        //reservationFacade.create(reservation);
+    }
+    
+    //FINISH THE REGISTRATION
+    public String completeReservation(){
+        
+        //check if there exists a user with given email
+        User reguser =  userFacade.checkEmail(user.getEmail());
+        
+        ReservationPK rpk = new ReservationPK();
+        
+        //persist new user in database if email is unique
+        if(reguser == null){
+            
+            userFacade.create(user);
+            reguser = userFacade.checkEmail(user.getEmail());
+            System.out.println("User email " + user.getEmail() + " did not exist yet in dB, persising new user...");
+            System.out.println("User id: " + reguser.getId());
+
+        } else{
+            System.out.println("User email " + user.getEmail() + " already existed in dB.");
+            System.out.println("User id: " + reguser.getId());
+
+        }
+        
+        rpk.setUserId(reguser.getId());
+        rpk.setRoomId(selectedRoom.getId());
+        
+        reservation.setReservationPK(rpk);
+        
         reservationFacade.create(reservation);
+        
+        return "confirmation.xhtml";
     }
     
     public RoomType[] getRoomTypes(){

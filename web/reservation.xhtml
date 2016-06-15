@@ -5,7 +5,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-    
+
 
     <body>
 
@@ -32,7 +32,7 @@
                             <h4>Select the desired room type and reservation date to see available rooms</h4>
 
                             <h:form>
-                                
+
                                 <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
                                     <p:outputLabel for="type" value="Type:" />
                                     <p:selectOneRadio id="type" value="#{ReservationController.prefRoom.roomType}">
@@ -40,24 +40,24 @@
                                         <f:ajax listener="#{ReservationController.roomtypeChange}" render="rooms-table"/>
                                     </p:selectOneRadio>
                                 </h:panelGrid>
-                                
-                                
-                                    <h:panelGrid columns="2" cellpadding="5">
-                                        <p:outputLabel for="datetime" value="Date:" />
-                                        <p:calendar id="datetime" value="#{ReservationController.reservation.startTime}" pattern="MM/dd/yyyy" minHour="8" maxHour="18">
-                                            <p:ajax event="dateSelect" listener="#{ReservationController.dateChange}" update="rooms-table"/>
-                                        </p:calendar>
-                                    </h:panelGrid>
 
-                                    <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
-                                        <p:panelGrid id="display" columns="2" columnClasses="label,value">
-                                            <h:outputText value="Datetime:" />
-                                            <h:outputText value="#{ReservationController.reservation.startTime}">
-                                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />                                                
-                                            </h:outputText>
-                                        </p:panelGrid>
-                                    </p:dialog>
-                                
+
+                                <h:panelGrid columns="2" cellpadding="5">
+                                    <p:outputLabel for="datetime" value="Date:" />
+                                    <p:calendar id="datetime" value="#{ReservationController.reservation.startTime}" pattern="MM/dd/yyyy" minHour="8" maxHour="18">
+                                        <p:ajax event="dateSelect" listener="#{ReservationController.dateChange}" update="rooms-table"/>
+                                    </p:calendar>
+                                </h:panelGrid>
+
+                                <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+                                    <p:panelGrid id="display" columns="2" columnClasses="label,value">
+                                        <h:outputText value="Datetime:" />
+                                        <h:outputText value="#{ReservationController.reservation.startTime}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />                                                
+                                        </h:outputText>
+                                    </p:panelGrid>
+                                </p:dialog>
+
 
                                 <p:dataTable id="rooms-table" var="room" value="#{ReservationController.filteredRoomList}" selectionMode="single" selection="#{ReservationController.selectedRoom}" rowKey="#{room.id}" >
                                     <p:ajax event="rowSelect" listener="#{ReservationController.onRowSelect}" />

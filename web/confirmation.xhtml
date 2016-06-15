@@ -20,9 +20,9 @@
                             <h4>Overview of your room reservation</h4>
                             <!-- Icon List -->
                             <style>
-                            .demo-list-icon {
-                              width: 530px;
-                            }
+                                .demo-list-icon {
+                                    width: 530px;
+                                }
                             </style>
                             <ul class="demo-list-icon mdl-list">
                                 <li class="mdl-list__item">
@@ -30,7 +30,7 @@
                                         <b>First name</b>
                                     </span>
                                     <span class="mdl-list__item-secondary-content">
-                                        #{ReservationController.firstname}
+                                        #{ReservationController.user.firstname}
                                     </span>
                                 </li>
                                 <li class="mdl-list__item">
@@ -38,7 +38,7 @@
                                         <b>Last name</b>
                                     </span>
                                     <span class="mdl-list__item-secondary-content">
-                                        #{ReservationController.lastname}
+                                        #{ReservationController.user.lastname}
                                     </span>
                                 </li>
                                 <li class="mdl-list__item">
@@ -46,7 +46,7 @@
                                         <b>E-mail</b>
                                     </span>
                                     <span class="mdl-list__item-secondary-content">
-                                        #{ReservationController.email}
+                                        #{ReservationController.user.email}
                                     </span>
                                 </li>
                                 <li class="mdl-list__item">
@@ -54,15 +54,15 @@
                                         <b>Reserved room</b>
                                     </span>
                                     <span class="mdl-list__item-secondary-content">
-                                        TODO Vesalius 10.02 <!-- TODO -->
+                                        #{ReservationController.selectedRoom.name}
                                     </span>
                                 </li>
                                 <li class="mdl-list__item">
                                     <span class="mdl-list__item-primary-content">
-                                        <b>Timeslot</b>
+                                        <b>Date</b>
                                     </span>
                                     <span class="mdl-list__item-secondary-content">
-                                        TODO 08/07/2016
+                                        #{ReservationController.reservation.startTime}
                                     </span>
                                 </li>
                                 <li class="mdl-list__item">
@@ -75,7 +75,7 @@
                                 </li>
                             </ul>
                             <h:form>
-                                <h:commandButton id='back-to-home' action="welcome" value="back to homepage" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white" style="float:right;"/>
+                                <h:commandButton id='back-to-home' action="#{ReservationController.cancelReservation}" value="back to homepage" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white" style="float:right;"/>
                             </h:form>
                         </div>
                     </div>
