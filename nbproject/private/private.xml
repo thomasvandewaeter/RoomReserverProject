@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Wouter/Documents/RoomReserverProject/src/java/soap/SoapService.java</file>
+            <file>file:/C:/Users/Wouter/Documents/RoomReserverProject/web/welcome.xhtml</file>
             <file>file:/C:/Users/Wouter/Documents/RoomReserverProject/src/java/managedbeans/ReservationController.java</file>
-            <file>file:/C:/Users/Wouter/Documents/RoomReserverProject/src/java/sessionbeans/RemoveReservationTimer.java</file>
+            <file>file:/C:/Users/Wouter/Documents/RoomReserverProject/nbproject/project.properties</file>
+            <file>file:/C:/Users/Wouter/Documents/RoomReserverProject/src/java/rest/ReservationFacadeREST.java</file>
             <file>file:/C:/Users/Wouter/Documents/RoomReserverProject/src/java/managedbeans/MailTimer.java</file>
+            <file>file:/C:/Users/Wouter/Documents/RoomReserverProject/nbproject/build-impl.xml~</file>
+            <file>file:/C:/Users/Wouter/Documents/RoomReserverProject/nbproject/project.xml</file>
         </group>
     </open-files>
 </project-private>
