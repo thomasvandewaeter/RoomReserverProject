@@ -43,5 +43,12 @@ public class UserFacade extends AbstractFacade<User> {
         }
     }
     
-    
+    public List<User> getAllUsers(){
+        try {
+            List<User> users = em.createNamedQuery("User.findAll").getResultList();
+            return users;
+        } catch (Exception e) {
+            return null;
+        } 
+    }
 }

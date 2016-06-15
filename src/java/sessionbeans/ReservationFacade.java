@@ -31,6 +31,11 @@ public class ReservationFacade extends AbstractFacade<Reservation> {
         super(Reservation.class);
     }
     
+    public List<Reservation> getAllReservations(){
+        List<Reservation> list = em.createNamedQuery("Reservation.findAll").getResultList();
+        return list;
+    }
+    
     public List<Reservation> getReservationsByRoomId(int id){
         List<Reservation> reservations = em.createNamedQuery("Reservation.findByRoomId").setParameter("roomId", id).getResultList();        
         return reservations;

@@ -189,6 +189,10 @@ public class ReservationController implements Serializable {
         return "confirmation.xhtml";
     }
     
+    public void sendReservationConfirmationEmail(){
+        System.out.println("*** mail sent to " + user.getEmail() + " ***");
+    }
+    
     public RoomType[] getRoomTypes(){
         return RoomType.values();
     }
