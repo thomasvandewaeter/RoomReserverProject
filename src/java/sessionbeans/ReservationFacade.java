@@ -6,6 +6,7 @@
 package sessionbeans;
 
 import entities.Reservation;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +28,10 @@ public class ReservationFacade extends AbstractFacade<Reservation> {
 
     public ReservationFacade() {
         super(Reservation.class);
+    }
+    
+    public List<Reservation> getAllReservations(){
+        return em.createNamedQuery("Reservation.findAll").getResultList();
     }
     
 }
