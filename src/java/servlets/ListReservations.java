@@ -41,6 +41,7 @@ public class ListReservations extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            /*
             try {
                 List<Reservation> list = reservationFacade.getAllReservations();
                 if(list != null && !list.isEmpty()){
@@ -66,7 +67,7 @@ public class ListReservations extends HttpServlet {
             } catch (Exception e) {
                 System.out.println(e.toString());
             }
-            
+            */
             
             
             out.println("<!DOCTYPE html>"

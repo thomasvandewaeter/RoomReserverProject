@@ -157,6 +157,10 @@ public class ReservationController implements Serializable {
         reservationFacade.create(reservation);
     }
     
+    public void sendReservationConfirmationEmail(){
+        System.out.println("*** mail sent to " + user.getEmail() + " ***");
+    }
+    
     public RoomType[] getRoomTypes(){
         return RoomType.values();
     }
@@ -207,5 +211,29 @@ public class ReservationController implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+    
+    public void setFirstname(String firstname){
+        user.setFirstname(firstname);
+    }
+    
+    public void setLastname(String lastname){
+        user.setLastname(lastname);
+    }
+    
+    public void setEmail(String email){
+        user.setEmail(email);
+    }
+    
+    public String getFirstname(){
+        return user.getFirstname();
+    }
+    
+    public String getLastname(){
+        return user.getLastname();
+    }
+    
+    public String getEmail(){
+        return user.getEmail();
     }
 }
